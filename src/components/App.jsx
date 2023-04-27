@@ -27,30 +27,24 @@ export const App = () => {
     }
   };
 
-  const totalVotes = () => {
-    return good + neutral + bad;
-  };
-
-  const positivePercentage = () => {
-    return Math.round((good / totalVotes()) * 100);
-  };
-
+const totalVotes = good + neutral + bad;
+const positivePercentage = Math.round((good / totalVotes) * 100);
   return (
     <Container>
       <Section title="Please leave feedback">
-        <FeedbackOptions options={[ 'good', 'neutral', 'bad' ]} handleClick={handleClick} />
+        <FeedbackOptions options={[ 'good', 'neutral', 'bad']} handleClick={handleClick} />
       </Section>
 
       <Section title="Statistics">
-        {!totalVotes() ? (
+        {!totalVotes ? (
           <Notification message="There is no feedback" />
         ) : (
           <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
-            totalVotes={totalVotes()}
-            positivePercentage={positivePercentage()}
+            totalVotes={totalVotes}
+            positivePercentage={positivePercentage}
           />
         )}
       </Section>
